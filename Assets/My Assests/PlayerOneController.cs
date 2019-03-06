@@ -53,10 +53,15 @@ public class PlayerOneController : MonoBehaviour
             {
                 CastSpell("aoe");
             }
-            if (Inputs[0] == "i" && Inputs[1] == "j" && Inputs[2] == "i" && once == false)
+            if (Inputs[0] == "i" && Inputs[1] == "j" && Inputs[2] == "k" && once == false)
             {
                 CastSpell("flamethrower");
             }
+        }
+
+        if(Inputs[0] == null && (Inputs[1] != null || Inputs[2] != null))
+        {
+            ClearInputs();
         }
        
     }
@@ -93,21 +98,11 @@ public class PlayerOneController : MonoBehaviour
             {
                 if (Inputs[i] == null)
                 {
-                    if (i == 0)
-                    {
-                        animator.SetBool("Up", true);
-                        Inputs[i] = "i";
-                        startTime = true;
-                        break;
-                    }
-                    else if (i > 0 && Inputs[i - 1] != "i")
-                    {
-                        time = 0;
-                        animator.SetBool("Up", true);
-                        Inputs[i] = "i";
-                        startTime = true;
-                        break;
-                    }
+                    time = 0;
+                    animator.SetBool("Up", true);
+                    Inputs[i] = "i";
+                    startTime = true;
+                    break;
                 }
             }
             StartCoroutine(Wait());
