@@ -8,6 +8,8 @@ TagManager:
   - Door1
   - particle
   - wall
+  - spell
+  - enemy
   layers:
   - Default
   - TransparentFX
