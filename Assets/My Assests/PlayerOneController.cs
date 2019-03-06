@@ -63,38 +63,10 @@ public class PlayerOneController : MonoBehaviour
         {
             ClearInputs();
         }
-       
-    }
-
-    void FixedUpdate()
-    {
-        axis = Input.GetAxis("Vertical");
-        axis2 = Input.GetAxis("Horizontal");
-        if (axis != 0)
-        {
-            move = true;
-            if(Inputting == true)
-            {
-                ClearInputs();
-            }
-        }
-        else if (axis == 0)
-        {
-            move = false;
-        }
-
-
-        rb.velocity = transform.forward * speed * axis * Time.deltaTime;
-
-        rb.angularVelocity = (Vector3.up * rotateSpeed * axis2 * Time.deltaTime);
-
-        animator.SetFloat("Velocity", rb.velocity.z);
-        animator.SetFloat("HVelocity", rb.velocity.x);
-        animator.SetBool("Move", move);
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            for(int i = 0; i < InputSize; i++)
+            for (int i = 0; i < InputSize; i++)
             {
                 if (Inputs[i] == null)
                 {
@@ -185,6 +157,36 @@ public class PlayerOneController : MonoBehaviour
             }
             StartCoroutine(Wait());
         }
+
+    }
+
+    void FixedUpdate()
+    {
+        axis = Input.GetAxis("Vertical");
+        axis2 = Input.GetAxis("Horizontal");
+        if (axis != 0)
+        {
+            move = true;
+            if(Inputting == true)
+            {
+                ClearInputs();
+            }
+        }
+        else if (axis == 0)
+        {
+            move = false;
+        }
+
+
+        rb.velocity = transform.forward * speed * axis * Time.deltaTime;
+
+        rb.angularVelocity = (Vector3.up * rotateSpeed * axis2 * Time.deltaTime);
+
+        animator.SetFloat("Velocity", rb.velocity.z);
+        animator.SetFloat("HVelocity", rb.velocity.x);
+        animator.SetBool("Move", move);
+
+       
 
         if (startTime == true)
         {
