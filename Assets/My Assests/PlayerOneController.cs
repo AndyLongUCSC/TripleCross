@@ -64,11 +64,11 @@ public class PlayerOneController : MonoBehaviour
     {
         if(Inputs[InputSize-1] != null)
         {
-            if(Inputs[0] == "i" && Inputs[1] == "j" && Inputs[2] == "l" && once == false)
+            if(Inputs[0] == "j" && Inputs[1] == "k" && Inputs[2] == "l" && once == false)
             {
                 CastSpell("aoe");
             }
-            if (Inputs[0] == "i" && Inputs[1] == "j" && Inputs[2] == "k" && once == false)
+            if (Inputs[0] == "i" && Inputs[1] == "i" && Inputs[2] == "i" && once == false)
             {
                 CastSpell("flamethrower");
             }

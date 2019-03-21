@@ -3201,6 +3201,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1170371567}
+    - target: {fileID: 8394351663565364138, guid: bc0bd95467590754cbffd369fe751976,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 343658449}
     - target: {fileID: 8394351662190147488, guid: bc0bd95467590754cbffd369fe751976,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -3251,6 +3256,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1170371567}
+    - target: {fileID: 8394351662190147492, guid: bc0bd95467590754cbffd369fe751976,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 343658449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0bd95467590754cbffd369fe751976, type: 3}
 --- !u!1 &955255243
@@ -5088,6 +5098,11 @@ PrefabInstance:
       propertyPath: count
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8394351663565364138, guid: bc0bd95467590754cbffd369fe751976,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 725509808}
     - target: {fileID: 8394351662190147492, guid: bc0bd95467590754cbffd369fe751976,
         type: 3}
       propertyPath: player
@@ -5098,6 +5113,11 @@ PrefabInstance:
       propertyPath: count
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8394351662190147492, guid: bc0bd95467590754cbffd369fe751976,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 725509808}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0bd95467590754cbffd369fe751976, type: 3}
 --- !u!1001 &1523856272

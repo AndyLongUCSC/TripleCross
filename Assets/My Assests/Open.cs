@@ -9,16 +9,18 @@ public class Open : MonoBehaviour
     public float speed = 10f;
     public float duration = 3f;
     public int direction = 1;
+
+    public GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.GetComponent<PlayerOneController>().GetCount() >= count)
+        if(player.GetComponent<PlayerOneController>().GetCount() >= count && enemy == null)
         {
             if (direction == 1)
             {
