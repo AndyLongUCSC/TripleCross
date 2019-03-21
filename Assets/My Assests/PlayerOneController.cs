@@ -106,21 +106,11 @@ public class PlayerOneController : MonoBehaviour
             {
                 if (Inputs[i] == null)
                 {
-                    if (i == 0)
-                    {
-                        animator.SetBool("Left", true);
-                        Inputs[i] = "j";
-                        startTime = true;
-                        break;
-                    }
-                    else if (i > 0 && Inputs[i - 1] != "j")
-                    {
-                        time = 0;
-                        animator.SetBool("Left", true);
-                        Inputs[i] = "j";
-                        startTime = true;
-                        break;
-                    }
+                    time = 0;
+                    animator.SetBool("Left", true);
+                    Inputs[i] = "j";
+                    startTime = true;
+                    break;
                 }
             }
             StartCoroutine(Wait());
@@ -132,21 +122,11 @@ public class PlayerOneController : MonoBehaviour
             {
                 if (Inputs[i] == null)
                 {
-                    if (i == 0)
-                    {
-                        animator.SetBool("Down", true);
-                        Inputs[i] = "k";
-                        startTime = true;
-                        break;
-                    }
-                    else if (i > 0 && Inputs[i - 1] != "k")
-                    {
-                        time = 0;
-                        animator.SetBool("Down", true);
-                        Inputs[i] = "k";
-                        startTime = true;
-                        break;
-                    }
+                    time = 0;
+                    animator.SetBool("Down", true);
+                    Inputs[i] = "k";
+                    startTime = true;
+                    break;
                 }
             }
             StartCoroutine(Wait());
@@ -158,21 +138,11 @@ public class PlayerOneController : MonoBehaviour
             {
                 if (Inputs[i] == null)
                 {
-                    if (i == 0)
-                    {
-                        animator.SetBool("Right", true);
-                        Inputs[i] = "l";
-                        startTime = true;
-                        break;
-                    }
-                    else if (i > 0 && Inputs[i - 1] != "l")
-                    {
-                        time = 0;
-                        animator.SetBool("Right", true);
-                        Inputs[i] = "l";
-                        startTime = true;
-                        break;
-                    }
+                    time = 0;
+                    animator.SetBool("Right", true);
+                    Inputs[i] = "l";
+                    startTime = true;
+                    break;
                 }
             }
             StartCoroutine(Wait());
