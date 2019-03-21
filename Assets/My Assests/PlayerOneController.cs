@@ -10,6 +10,7 @@ public class PlayerOneController : MonoBehaviour
     public float rotateSpeed = 90f;
 
     public Text healthText;
+    public Text manaText;
 
     public string[] Inputs;
 
@@ -34,8 +35,12 @@ public class PlayerOneController : MonoBehaviour
     private bool canCast = true;
 
     public int hp = 12;
+    public int mp = 12;
 
     public List<GameObject> health;
+    public List<GameObject> mana;
+
+    private bool gainMana = true;
 
     float axis;
     float axis2;
@@ -51,6 +56,7 @@ public class PlayerOneController : MonoBehaviour
         counter = 0;
         Inputs = new string[InputSize];
         SetHealth();
+        SetMana();
     }
 
     // Update is called once per frame
@@ -66,6 +72,11 @@ public class PlayerOneController : MonoBehaviour
             {
                 CastSpell("flamethrower");
             }
+        }
+
+        if(mp < 12 && gainMana == true)
+        {
+            StartCoroutine(GainingMana());
         }
 
         if(Inputs[0] == null && (Inputs[1] != null || Inputs[2] != null))
@@ -277,16 +288,21 @@ public class PlayerOneController : MonoBehaviour
 
     private void CastSpell(string str)
     {
-        once = true;
-        if (str == "aoe")
+        if (mp > 0)
         {
-            spell = Instantiate(Spells[0], new Vector3 (0,0,0), Quaternion.identity);
-            spell.transform.position = this.transform.position;
-        }
-        if(str == "flamethrower")
-        {
-            spell = Instantiate(Spells[1], new Vector3(0, 0, 0), Quaternion.identity);
-            spell.transform.position = this.transform.position;
+            once = true;
+            if (str == "aoe")
+            {
+                spell = Instantiate(Spells[0], new Vector3(0, 0, 0), Quaternion.identity);
+                spell.transform.position = this.transform.position;
+            }
+            if (str == "flamethrower")
+            {
+                spell = Instantiate(Spells[1], new Vector3(0, 0, 0), Quaternion.identity);
+                spell.transform.position = this.transform.position;
+            }
+            mp -= 3;
+            SetMana();
         }
     }
 
@@ -306,9 +322,45 @@ public class PlayerOneController : MonoBehaviour
         }
     }
 
+    private void SetMana()
+    {
+        manaText.text = "Mana: " + mp + "/12";
+        for (int i = 11; i >= 0; i--)
+        {
+            if (i == (mp - 1))
+            {
+                break;
+            }
+            if (mana[i] != null)
+            {
+                mana[i].GetComponentInChildren<Image>().enabled = false;
+            }
+        }
+    }
+
     private IEnumerator WaitToDie()
     {
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("GameOver");
+    }
+
+    private IEnumerator GainingMana()
+    {
+        gainMana = false;
+        yield return new WaitForSeconds(10);
+        mp += 1;
+        for (int i = 0; i <12; i++)
+        {
+            if (mana[i].GetComponentInChildren<Image>().enabled != true)
+            {
+                mana[i].GetComponentInChildren<Image>().enabled = true;
+            }
+            if (i == (mp - 1))
+            {
+                break;
+            }
+        }
+        manaText.text = "Mana: " + mp + "/12";
+        gainMana = true;
     }
 }
