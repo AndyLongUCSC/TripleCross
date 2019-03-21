@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1911040030750427104}
   - component: {fileID: 8528489128745705817}
   - component: {fileID: 871874255473775136}
+  - component: {fileID: 752394107437548111}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: spell
@@ -4743,3 +4744,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &752394107437548111
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759109993960019397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.71, y: 1.71, z: 5.5}
+  m_Center: {x: 0, y: 0, z: 2.5}

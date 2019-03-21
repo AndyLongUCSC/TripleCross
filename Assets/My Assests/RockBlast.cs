@@ -32,7 +32,7 @@ public class RockBlast : MonoBehaviour
     {
         if (other.tag != "Player")
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
