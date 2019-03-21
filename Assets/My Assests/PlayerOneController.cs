@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerOneController : MonoBehaviour
 {
     public float speed = 5f;
     public float rotateSpeed = 90f;
+
+    public Text healthText;
 
     public string[] Inputs;
 
@@ -28,6 +31,11 @@ public class PlayerOneController : MonoBehaviour
     private GameObject spell;
 
     private bool once = false;
+    private bool canCast = true;
+
+    public int hp = 12;
+
+    public List<GameObject> health;
 
     float axis;
     float axis2;
@@ -42,6 +50,7 @@ public class PlayerOneController : MonoBehaviour
         animator = GetComponent<Animator>();
         counter = 0;
         Inputs = new string[InputSize];
+        SetHealth();
     }
 
     // Update is called once per frame
@@ -64,7 +73,7 @@ public class PlayerOneController : MonoBehaviour
             ClearInputs();
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && canCast == true)
         {
             for (int i = 0; i < InputSize; i++)
             {
@@ -80,7 +89,7 @@ public class PlayerOneController : MonoBehaviour
             StartCoroutine(Wait());
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && canCast == true)
         {
             for (int i = 0; i < InputSize; i++)
             {
@@ -106,7 +115,7 @@ public class PlayerOneController : MonoBehaviour
             StartCoroutine(Wait());
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && canCast == true)
         {
             for (int i = 0; i < InputSize; i++)
             {
@@ -132,7 +141,7 @@ public class PlayerOneController : MonoBehaviour
             StartCoroutine(Wait());
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && canCast == true)
         {
             for (int i = 0; i < InputSize; i++)
             {
@@ -158,6 +167,10 @@ public class PlayerOneController : MonoBehaviour
             StartCoroutine(Wait());
         }
 
+        if(hp <= 0)
+        {
+            StartCoroutine(WaitToDie());
+        }
     }
 
     void FixedUpdate()
@@ -210,7 +223,13 @@ public class PlayerOneController : MonoBehaviour
 
         if(other.gameObject.tag == "enemy")
         {
-            SceneManager.LoadScene("GameOver");
+            hp -= 3;
+            animator.Play("Hurt", 0);
+            if(hp == 0)
+            {
+                animator.SetBool("Death", true);
+            }
+            SetHealth();
         }
     }
 
@@ -221,7 +240,9 @@ public class PlayerOneController : MonoBehaviour
 
     private IEnumerator Wait()
     {
+        canCast = false;
         yield return new WaitForSeconds(0.2f);
+        canCast = true;
         ClearBools();
     }
 
@@ -267,5 +288,27 @@ public class PlayerOneController : MonoBehaviour
             spell = Instantiate(Spells[1], new Vector3(0, 0, 0), Quaternion.identity);
             spell.transform.position = this.transform.position;
         }
+    }
+
+    private void SetHealth()
+    {
+        healthText.text = "Health: " + hp + "/12";
+        for (int i = 11; i >= 0; i--)
+        {
+            if (i == (hp -1))
+            {
+                break;
+            }
+            if (health[i] != null)
+            {
+                Destroy(health[i]);
+            }
+        }
+    }
+
+    private IEnumerator WaitToDie()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("GameOver");
     }
 }
